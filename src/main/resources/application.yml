@@ -1,0 +1,31 @@
+server:
+  port: 8081
+
+spring:
+  sql:
+    init:
+      platform: postgres
+  datasource:
+    driverClassName: org.postgresql.Driver
+  jpa:
+    show-sql: off # set only to true for debugging (too much logging in a test may cause surefire to dump)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false # set only to true for debugging (too much logging in a test may cause surefire to dump)
+        show_sql: true
+    hibernate:
+      ddl-auto: none
+  jackson:
+    deserialization:
+      use-long-for-ints: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: info # set only to debug for debugging (too much logging in a test may cause surefire to dump)
+        type: error # set only to trace for debugging (too much logging in a test may cause surefire to dump)
+
+security:
+  apikey: ${CONTACTS_APIKEY}
